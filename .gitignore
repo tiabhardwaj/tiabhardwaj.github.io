@@ -1,0 +1,17 @@
+# installed dependencies
+node_modules/
+
+# generated website and astro files
+dist/
+.astro/
+
+# local environment configuration
+.env
+.env.*
+
+# npm debugging logs
+npm-debug.log*
+
+# operating system files
+.DS_Store
+Thumbs.db
