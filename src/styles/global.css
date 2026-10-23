@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #fff8ed;
+}
+
+#neural-homepage-study {
+    color-scheme: light;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+
+    --nh-bg: #fff8ed;
+    --nh-text: #332b39;
+    --nh-muted: #706575;
+    --nh-line: #e4d8da;
+    --nh-writing: #f12498;
+    --nh-work: #009fbd;
+    --nh-research: #7653ed;
+    --nh-startup: #ec6900;
+    --nh-lime: #86b900;
+}
+
+#neural-homepage-study * {
+    box-sizing: border-box;
+}
+
+#neural-homepage-study .nh-page {
+    background: var(--nh-bg);
+    color: var(--nh-text);
+    padding: 22px 32px 24px;
+}
+
+#neural-homepage-study button{
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+#neural-homepage-study button:focus-visible{
+    outline: 3px solid var(--nh-research);
+    outline-offset: 5px;
+}
+
+#neural-homepage-study .nh-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 90px 19px 0;
+    border-bottom: 1px solid var(--nh-line);
+}
+
+#neural-homepage-study .nh-header > strong {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    font-weight: 400;
+    letter-spacing: -1px;
+}
+
+#neural-homepage-study .nh-header > strong span {
+    color: var(--nh-writing);
+    padding-left: 6px;
+}
+
+#neural-homepage-study nav {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+#neural-homepage-study nav button {
+    border: 0;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    padding: 6px 0;
+    font-size: 18px;
+    min-height: 44px;
+}
+
+#neural-homepage-study nav button[aria-pressed="true"] {
+    border-bottom-color: var(--nh-writing);
+}
+
+#neural-homepage-study .nh-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  padding: 25px 2px 0;
+}
+
+#neural-homepage-study .nh-kicker {
+  font-family: monospace;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  margin: 0 0 9px;
+  color: var(--nh-muted);
+}
+
+#neural-homepage-study h1 {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(34px, 4.4vw, 48px);
+  line-height: 1.04;
+  letter-spacing: -1.6px;
+  margin: 0;
+}
+
+#neural-homepage-study h1 em {
+  color: #ab3978;
+}
+
+#neural-homepage-study .nh-description {
+  font-size: 18px;
+  line-height: 1.65;
+  max-width: 340px;
+  margin: 0;
+  color: var(--nh-muted);
+}
+
+#neural-homepage-study .nh-description span {
+  display: block;
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  margin-top: 13px;
+}
+
+@media (max-width: 650px) {
+    #neural-homepage-study .nh-page {
+        padding: 19px 16px;
+    }
+
+    #neural-homepage-study .nh-header {
+        display: block;
+        padding: 0 0 15px;
+    }
+
+    #neural-homepage-study nav {
+        margin-top: 12px;
+        gap: 22px;
+    }
+
+    #neural-homepage-study .nh-intro {
+  display: block;
+  padding-top: 22px;
+}
+
+#neural-homepage-study h1 {
+  font-size: 37px;
+}
+
+#neural-homepage-study .nh-description {
+  margin-top: 15px;
+}
+}
