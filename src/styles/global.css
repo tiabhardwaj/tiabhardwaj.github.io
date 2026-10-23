@@ -129,6 +129,17 @@ body {
   margin-top: 13px;
 }
 
+#neural-homepage-study .nh-stage {
+    position: relative;
+    height: 560px;
+}
+
+#neural-homepage-study .nh-brain {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
 @media (max-width: 650px) {
     #neural-homepage-study .nh-page {
         padding: 19px 16px;
@@ -156,4 +167,30 @@ body {
 #neural-homepage-study .nh-description {
   margin-top: 15px;
 }
+
+#neural-homepage-study .nh-stage {
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 22px;
+    padding-bottom: 20px;
+}
+
+#neural-homepage-study .nh-brain {
+  grid-column: 1 / -1;
+  height: auto;
+  aspect-ratio: 1.1;
+  margin: 6px 0 0;
+}
+
+}
+
+#neural-homepage-study .nh-neuron {
+  transition: opacity 0.25s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #neural-homepage-study .nh-neuron {
+    transition: none;
+  }
 }
