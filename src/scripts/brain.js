@@ -85,10 +85,10 @@ points.forEach((p, i) => {
   layers.push({ layer, group: p.group });
 
   // Each neuron has four, five, or six main branches.
-  const arms = 4 + Math.floor(rand() * 3);
-  let d = "";
+const arms = 4 + Math.floor(rand() * 3);
+let d = "";
 
-  for (let a = 0; a < arms; a++) {
+for (let a = 0; a < arms; a++) {
     const angle = (a / arms) * Math.PI * 2 + rand() * 0.7;
     const length = 10 + rand() * 17;
 
@@ -117,83 +117,114 @@ points.forEach((p, i) => {
     }
   }
 
-  make("path", {
+make("path", {
     d,
     fill: "none",
     stroke: p.colour,
     "stroke-width": i % 8 === 0 ? 1.6 : 1.05,
     "stroke-linecap": "round",
-  }, layer);
+}, layer);
 
-  // Draw the coloured centre and its small pale highlight.
-  const radius = 1.2 + rand() * 1.8;
+// Draw the coloured centre and its small pale highlight.
+const radius = 1.2 + rand() * 1.8;
 
-  make("circle", {
+make("circle", {
     cx: p.x,
     cy: p.y,
     r: radius,
     fill: p.colour,
-  }, layer);
+}, layer);
 
-  make("circle", {
+make("circle", {
     cx: p.x,
     cy: p.y,
     r: radius * 0.35,
     fill: "#fff9f1",
-  }, layer);
+}, layer);
 
   // Find the nearest earlier neuron in the same decorative group.
-  const near = points
+const near = points
     .filter((q, j) =>
-      j < i &&
-      q.group === p.group &&
-      Math.hypot(q.x - p.x, q.y - p.y) < 58
+        j < i &&
+        q.group === p.group &&
+        Math.hypot(q.x - p.x, q.y - p.y) < 58
     )
     .sort((a, b) =>
       Math.hypot(a.x - p.x, a.y - p.y) -
       Math.hypot(b.x - p.x, b.y - p.y)
     )[0];
 
-  if (near) {
+if (near) {
     make("path", {
-      d: `M${p.x},${p.y}
-          Q${(p.x + near.x) / 2 + 6},${(p.y + near.y) / 2 - 6}
-          ${near.x},${near.y}`,
-      fill: "none",
-      stroke: p.colour,
-      "stroke-width": 0.65,
-      opacity: 0.5,
+    d: `M${p.x},${p.y}
+        Q${(p.x + near.x) / 2 + 6},${(p.y + near.y) / 2 - 6}
+        ${near.x},${near.y}`,
+    fill: "none",
+    stroke: p.colour,
+     "stroke-width": 0.65,
+    opacity: 0.5,
     }, layer);
-  }
+}
 });
 
-// Match the original artifact's closer framing on narrow screens.
+// Match the framing on narrow screens.
 const observer = new ResizeObserver(() => {
-  const viewBox =
-    root.clientWidth < 650 ? "130 30 640 510" : "0 0 900 575";
+    const viewBox =
+        root.clientWidth < 650 ? "130 30 640 510" : "0 0 900 575";
 
-  svg.setAttribute("viewBox", viewBox);
+    svg.setAttribute("viewBox", viewBox);
 });
 
 observer.observe(root);
 
 const sectionButtons = root.querySelectorAll("[data-section]");
 let selectedSection = null;
+const previewHeading = root.querySelector(".nh-detail h2");
+const previewCopy = root.querySelector(".nh-detail-copy");
+
+const previews = {
+    overview: {
+        heading: "[Overview heading]",
+        description: "[Overview description]",
+    },
+    writing: {
+        heading: "Writing",
+        description: "[Writing description]",
+    },
+    work: {
+        heading: "Work",
+        description: "[Work description]",
+    },
+    research: {
+        heading: "Research",
+        description: "[Research description]",
+    },
+    startup: {
+        heading: "Startup",
+        description: "[Startup description]",
+    },
+};
 
 function updateSelection() {
-  layers.forEach(({ layer, group }) => {
-    const highlighted =
-      selectedSection === null || group === selectedSection;
+    layers.forEach(({ layer, group }) => {
+        const highlighted =
+            selectedSection === null || group === selectedSection;
 
-    layer.style.opacity = highlighted ? "1" : "0.11";
+        layer.style.opacity = highlighted ? "1" : "0.11";
   });
 
-  sectionButtons.forEach((button) => {
-    const selected = button.dataset.section === selectedSection;
+    sectionButtons.forEach((button) => {
+        const selected = button.dataset.section === selectedSection;
 
-    button.setAttribute("aria-pressed", String(selected));
-  });
+        button.setAttribute("aria-pressed", String(selected));
+    });
+
+    const preview = previews[selectedSection ?? "overview"];
+
+    previewHeading.textContent = preview.heading;
+    previewCopy.textContent = preview.description;
 }
+
 
 sectionButtons.forEach((button) => {
   button.addEventListener("click", () => {

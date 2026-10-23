@@ -196,84 +196,119 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #neural-homepage-study .nh-neuron {
-    transition: none;
-  }
+    #neural-homepage-study .nh-neuron {
+        transition: none;
+    }
 }
 
 #neural-homepage-study .nh-section {
-  position: absolute;
-  text-align: left;
-  padding: 11px 0;
-  border: 0;
-  background: var(--nh-bg);
-  border-bottom: 2px solid var(--c);
-  min-width: 141px;
+    position: absolute;
+    text-align: left;
+    padding: 11px 0;
+    border: 0;
+    background: var(--nh-bg);
+    border-bottom: 2px solid var(--c);
+    min-width: 141px;
 }
 
 #neural-homepage-study .nh-section span {
-  display: block;
-  font-family: monospace;
-  font-size: 13px;
-  letter-spacing: 1px;
-  color: var(--nh-muted);
+    display: block;
+    font-family: monospace;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: var(--nh-muted);
 }
 
 #neural-homepage-study .nh-section strong {
-  display: block;
-  font-family: Georgia, serif;
-  font-size: 31px;
-  font-weight: 400;
-  letter-spacing: -0.7px;
-  margin: 3px 0;
+    display: block;
+    font-family: Georgia, serif;
+    font-size: 31px;
+    font-weight: 400;
+    letter-spacing: -0.7px;
+    margin: 3px 0;
 }
 
 #neural-homepage-study .nh-section small {
-  font-size: 16px;
-  color: var(--nh-muted);
+    font-size: 16px;
+    color: var(--nh-muted);
 }
 
 #neural-homepage-study .nh-writing {
-  --c: var(--nh-writing);
-  left: 1%;
-  top: 16%;
-  transform: rotate(-3deg);
+    --c: var(--nh-writing);
+    left: 1%;
+    top: 16%;
+    transform: rotate(-3deg);
 }
 
 #neural-homepage-study .nh-research {
-  --c: var(--nh-research);
-  right: 1%;
-  top: 18%;
-  transform: rotate(3deg);
+    --c: var(--nh-research);
+    right: 1%;
+    top: 18%;
+    transform: rotate(3deg);
 }
 
 #neural-homepage-study .nh-work {
-  --c: var(--nh-work);
-  left: 3%;
-  top: 67%;
-  transform: rotate(2deg);
+    --c: var(--nh-work);
+    left: 3%;
+    top: 67%;
+    transform: rotate(2deg);
 }
 
 #neural-homepage-study .nh-startup {
-  --c: var(--nh-startup);
-  right: 2%;
-  top: 69%;
-  transform: rotate(-3deg);
+    --c: var(--nh-startup);
+    right: 2%;
+    top: 69%;
+    transform: rotate(-3deg);
 }
 
 #neural-homepage-study .nh-section[aria-pressed="true"] {
-  border-bottom-width: 5px;
+    border-bottom-width: 5px;
 }
 
 @media (max-width: 650px) {
-  #neural-homepage-study .nh-section {
-    position: static;
-    min-width: 0;
-    transform: none;
-    padding: 5px 0 10px;
+    #neural-homepage-study .nh-section {
+        position: static;
+        min-width: 0;
+        transform: none;
+        padding: 5px 0 10px;
   }
 
-  #neural-homepage-study .nh-section strong {
-    font-size: 26px;
-  }
+    #neural-homepage-study .nh-section strong {
+        font-size: 26px;
+    }
+}
+
+#neural-homepage-study .nh-detail {
+    width: 100%;
+    max-width: 1060px;
+    margin-inline: auto;
+    border-top: 1px solid var(--nh-line);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    align-items: center;
+    padding: 20px 0;
+    min-height: 115px;
+}
+
+#neural-homepage-study .nh-detail h2 {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    line-height: 1.1;
+    font-weight: 400;
+    margin: 0;
+}
+
+#neural-homepage-study .nh-detail-copy {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--nh-muted);
+    margin: 0;
+}
+
+@media (max-width: 650px) {
+    #neural-homepage-study .nh-detail {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
 }
