@@ -1,0 +1,114 @@
+---
+import "../styles/global.css"
+import ContentGraph from "./ContentGraph.astro";
+const { graph, design = false } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Tia Bhardwaj</title>
+        {design && <meta name="robots" content="noindex,nofollow" />}
+    </head>
+    <body>
+        {design && <p style="text-align:center;font:12px monospace">Design check · placeholder content · development only</p>}
+        <div id="neural-homepage-study">
+            <div class="nh-page">
+                <header class="nh-header">
+                    <strong>
+                        tia bhardwaj<span aria-hidden="true">☾</span>
+                    </strong>
+
+                    <nav aria-label="Main sections">
+                        <button type="button" data-section="writing" aria-pressed="false">
+                            Writing
+                        </button>
+                        <button type="button" data-section="work" aria-pressed="false">
+                            Work
+                        </button>
+                        <button type="button" data-section="research" aria-pressed="false">
+                            Research
+                        </button>
+                        <button type="button" data-section="startup" aria-pressed="false">
+                            Startup
+                        </button>
+                    </nav>
+                </header>
+
+                <main>
+                    <div class="nh-intro">
+                        <div>
+                        <p class="nh-kicker">[Short Label]</p>
+                        <h1>
+                            [Headline line one]<br />
+                            <em>[Headline line two]</em>
+                        </h1>
+                        </div>
+
+                        <p class="nh-description">
+                        [Short introduction sentence.]<br />
+                        [Supporting sentence.]
+                        <span>[Small note]</span>
+                        </p>
+                    </div>
+
+                    <ContentGraph graph={graph} mode="home">
+                        <button
+                            type="button"
+                            class="nh-section nh-writing"
+                            data-section="writing"
+                            aria-pressed="false"
+                        >
+                            <span>01 / [Label]</span>
+                            <strong>Writing</strong>
+                            <small>[Description]</small>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="nh-section nh-research"
+                            data-section="research"
+                            aria-pressed="false"
+                        >
+                            <span>02 / [Label]</span>
+                            <strong>Research</strong>
+                            <small>[Description]</small>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="nh-section nh-work"
+                            data-section="work"
+                            aria-pressed="false"
+                        >
+                            <span>03 / [Label]</span>
+                            <strong>Work</strong>
+                            <small>[Description]</small>
+                    </button>
+
+                        <button
+                            type="button"
+                            class="nh-section nh-startup"
+                            data-section="startup"
+                            aria-pressed="false"
+                        >
+                            <span>04 / [Label]</span>
+                            <strong>Startup</strong>
+                            <small>[Description]</small>
+                        </button>
+                    </ContentGraph>
+<section class="nh-detail" aria-live="polite" aria-atomic="true">
+                        <div>
+                            <p class="nh-kicker">[Preview label]</p>
+                            <h2>[Overview heading]</h2>
+                        </div>
+
+                        <p class="nh-detail-copy">[Overview description]</p>
+                    </section>
+                </main>
+            </div>
+        </div>
+        <script src="../scripts/brain.js"></script>
+    </body>
+</html>

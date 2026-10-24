@@ -1,0 +1,29 @@
+---
+import PieceLayout from "../../layouts/PieceLayout.astro";
+import { designGraph } from "../../data/design-fixture.js";
+import HomePage from "../../components/HomePage.astro";
+export function getStaticPaths() {
+  return import.meta.env.DEV ? [
+    { params: { id: "home" }, props: { home: true } },
+    ...designGraph.pieces.map((piece) => ({ params: { id: piece.id }, props: { piece } })),
+  ] : [];
+}
+const { piece, home = false } = Astro.props;
+---
+{home ? <HomePage graph={designGraph} design /> : <PieceLayout piece={piece} graph={designGraph} design>
+  <h2>[First section heading]</h2>
+  <p>[Opening paragraph of the essay. This space is for the idea, its context, and the question behind it.]</p>
+  <p>[The next paragraph develops the argument. A reference to <a href="/design/research-b/">Research B</a> appears naturally within the writing.]</p>
+  <blockquote>[A passage worth pausing on.]</blockquote>
+  <p>[This paragraph can elaborate further, connect related ideas, and set up the next part of the essay.]</p>
+  <h2>[Second section heading]</h2>
+  <p>[The essay continues here. A connection to <a href="/design/project-c/">Project C</a> can be followed without losing your place in the article.]</p>
+  <p>[Further discussion, evidence, and reflection will occupy this space.]</p>
+  <h2>[Third section heading]</h2>
+  <p>[This longer sample lets you scroll and check that the graph stays visible beside the article.]</p>
+  <p>[On a narrow screen the article remains full width, and the graph follows it in reading order.]</p>
+  <blockquote>[Another passage from the essay.]</blockquote>
+  <h2>[Closing section]</h2>
+  <p>[The final paragraphs bring the essay to a close. All words and connections on this development page are illustrative.]</p>
+  <p>[This is a layout check, not a published essay or a claim about completed work.]</p>
+</PieceLayout>}

@@ -1,0 +1,34 @@
+---
+import ContentGraph from "../components/ContentGraph.astro";
+import { SECTIONS, selectedSections } from "../lib/sections.js";
+import "../styles/piece.css";
+const { piece, graph, design = false } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={piece.description} />
+    <title>{piece.title} · Tia Bhardwaj</title>
+    {design ? <meta name="robots" content="noindex,nofollow" /> : <link rel="canonical" href={new URL(piece.url, Astro.site)} />}
+  </head>
+  <body class="piece-page">
+    {design && <p class="design-notice">Design check · placeholder content · development only</p>}
+    <header class="piece-header">
+      <a class="piece-wordmark" href="/">tia bhardwaj<span aria-hidden="true">☾</span></a>
+      <nav aria-label="Main sections">{SECTIONS.map((section) => <a href={`/?section=${section.id}`}>{section.label}</a>)}</nav>
+    </header>
+    <main class="piece-layout">
+      <article class="piece-article">
+        <div class="piece-sections">{selectedSections(piece.sections).map((section) => <a href={`/?section=${section.id}`} style={`--section-colour:${section.colour}`}>{section.label}</a>)}</div>
+        <h1>{piece.title}</h1>
+        <p class="piece-introduction">{piece.description}</p>
+        <div class="piece-body"><slot /></div>
+      </article>
+      <aside class="piece-aside" aria-label="Local graph">
+        <ContentGraph graph={graph} currentId={piece.id} />
+      </aside>
+    </main>
+  </body>
+</html>

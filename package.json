@@ -10,5 +10,9 @@
     },
     "dependencies": {
         "astro": "^7.4.2"
+    },
+    "devDependencies": {
+        "remark-parse": "^11.0.0",
+        "unified": "^11.0.5"
     }
 }

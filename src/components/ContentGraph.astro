@@ -1,0 +1,43 @@
+---
+import { SECTIONS, sectionRim, selectedSections } from "../lib/sections.js";
+import "../styles/content-graph.css";
+const { graph, currentId = null, mode = "local" } = Astro.props;
+const current = graph.pieces.find((piece) => piece.id === currentId);
+---
+<section class:list={["content-graph", `graph-${mode}`]} data-content-graph data-current={currentId} data-mode={mode} aria-label={mode === "local" ? "Connections around this piece" : "Published pieces"}>
+  <script type="application/json" data-graph-data set:html={JSON.stringify(graph).replace(/</g, "\\u003c")} />
+  {mode === "local" && <>
+    <h2>Around this {current?.sections.includes("writing") ? "essay" : "piece"}</h2>
+    <p class="graph-reading">You are reading {current?.title}</p>
+    <div class="graph-depth" aria-label="Connection depth">
+      {[1, 2, 3].map((depth) => <button type="button" data-depth={depth} aria-pressed={depth === 1}>{depth} {depth === 1 ? "degree" : "degrees"}</button>)}
+    </div>
+  </>}
+  <div class="graph-canvas">
+    <svg class="graph-decoration" viewBox="130 30 640 510" aria-hidden="true"></svg>
+    <svg class="graph-edges" viewBox="130 30 640 510" aria-hidden="true"></svg>
+    <div class="graph-nodes"></div>
+    <slot />
+  </div>
+  <p class="graph-status" role="status">{graph.pieces.length ? "Select a connected piece to explore." : "[Published pieces will appear here.]"}</p>
+  <div class="graph-key" aria-label="Section colours">
+    {SECTIONS.map((section) => <span><i style={`--key-colour:${section.colour}`}></i>{section.label}</span>)}
+  </div>
+  {current && <p class="graph-key-note">Outer ring = current page · Coloured segments = sections</p>}
+  <section class="graph-preview" hidden aria-label="Selected piece preview">
+    <button type="button" class="graph-close" aria-label="Close preview">×</button>
+    <p class="graph-preview-sections"></p>
+    <h3></h3><p class="graph-preview-copy"></p>
+    <a class="graph-open">Open piece →</a>
+  </section>
+  <details class="graph-list">
+    <summary>Browse connections as a list</summary>
+    <ul>{graph.pieces.map((piece) => <li data-list-id={piece.id}>
+      <span class="section-rim" style={`--rim:${sectionRim(piece.sections)}`} aria-hidden="true"></span>
+      <a href={piece.url}>{piece.title}</a>
+      <small>{selectedSections(piece.sections).map((section) => section.label).join(" · ")}</small>
+    </li>)}</ul>
+  </details>
+  <noscript><p>The interactive map needs JavaScript. All pieces are available in the list above.</p></noscript>
+</section>
+<script src="../scripts/content-graph.js"></script>
